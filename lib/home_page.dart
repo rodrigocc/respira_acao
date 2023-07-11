@@ -48,13 +48,20 @@ class _HomePageState extends State<HomePage> {
                 onEnd: () {
                   endBreath();
                 },
-                decoration: const BoxDecoration(color: Colors.blueAccent, shape: BoxShape.circle),
+                decoration: const BoxDecoration(
+                    color: Colors.blueAccent, shape: BoxShape.circle),
+                child: Center(
+                  child: Text(duration.toString()),
+                ),
               ),
             ),
             isBreathStarted
                 ? Text(
                     _breathContext,
-                    style: const TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 25),
+                    style: const TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 25),
                   )
                 : const SizedBox.shrink()
           ],
@@ -66,9 +73,7 @@ class _HomePageState extends State<HomePage> {
       isBreathStarted = true;
       containerHeight = 200;
       containerWidht = 200;
-      Future.delayed(const Duration(seconds: 5), () {
-        _breathContext = "Inspira";
-      });
+      _breathContext = "Inspira";
     });
   }
 
@@ -77,7 +82,6 @@ class _HomePageState extends State<HomePage> {
       containerHeight = 100;
       containerWidht = 100;
       _breathContext = "Expira";
-      Future.delayed(const Duration(seconds: 5), () {});
     });
   }
 }
