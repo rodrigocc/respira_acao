@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'initial_page.dart';
+
 class HowIfeelPage extends StatefulWidget {
   const HowIfeelPage({super.key});
 
@@ -23,9 +25,13 @@ class _HowIfeelPageState extends State<HowIfeelPage> {
                 GestureDetector(
                   child: Image.asset(
                     "assets/emojis/sad_emoji.png",
-                    height: 50,
-                    width: 50,
+                    height: 45,
+                    width: 45,
                   ),
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (_) => const MenuPage()));
+                  },
                 ),
                 GestureDetector(
                   child: Image.asset(
