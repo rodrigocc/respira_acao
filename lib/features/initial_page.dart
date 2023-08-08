@@ -8,35 +8,46 @@ class MenuPage extends StatefulWidget {
 }
 
 class _MenuPageState extends State<MenuPage> {
+  int _currentBottomNavItemIndex = 0;
+
+  void _setBottomNavIndex(int index) {
+    setState(() {
+      _currentBottomNavItemIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
-        items: const [
-          BottomNavigationBarItem(
+        type: BottomNavigationBarType.shifting,
+        onTap: _setBottomNavIndex,
+        currentIndex: _currentBottomNavItemIndex,
+        useLegacyColorScheme: false,
+        items: [
+          const BottomNavigationBarItem(
               icon: Icon(
-                Icons.abc,
+                Icons.home,
                 color: Colors.blue,
               ),
-              label: 'testando'),
+              label: 'Menu'),
           BottomNavigationBarItem(
+            icon: Image.asset("assets/icons/mandala_icon.png",
+                color: Colors.blue, height: 30, width: 30),
+            label: 'Respirações',
+          ),
+          const BottomNavigationBarItem(
               icon: Icon(
-                Icons.abc,
+                Icons.menu_book,
                 color: Colors.blue,
               ),
-              label: 'testando'),
-          BottomNavigationBarItem(
+              label: 'Estatisticas'),
+          const BottomNavigationBarItem(
               icon: Icon(
-                Icons.abc,
+                Icons.settings,
                 color: Colors.blue,
               ),
-              label: 'testando'),
-          BottomNavigationBarItem(
-              icon: Icon(
-                Icons.abc,
-                color: Colors.blue,
-              ),
-              label: 'testando'),
+              label: 'Ajustes'),
         ],
       ),
       body: Container(
