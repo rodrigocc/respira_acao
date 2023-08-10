@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:respira_acao/features/breaths/components/animated_listview.dart';
+import 'package:respira_acao/features/breaths/presenter/components/animated_listview.dart';
 
 class BreathListPage extends StatefulWidget {
   const BreathListPage({super.key});

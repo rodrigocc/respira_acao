@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:respira_acao/features/breaths/components/breath_slider.dart';
+import 'package:respira_acao/features/breaths/presenter/components/breath_slider.dart';
 
 class AnimatedListView extends StatefulWidget {
   const AnimatedListView({super.key});

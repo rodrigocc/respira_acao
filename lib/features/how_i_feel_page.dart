@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'initial_page.dart';
+import '../shared/bottom_nav_component.dart';
 
 class HowIfeelPage extends StatefulWidget {
   const HowIfeelPage({super.key});
@@ -29,8 +29,10 @@ class _HowIfeelPageState extends State<HowIfeelPage> {
                     width: 45,
                   ),
                   onTap: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (_) => const MenuPage()));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (_) => const BottomNavBarComponent()));
                   },
                 ),
                 GestureDetector(

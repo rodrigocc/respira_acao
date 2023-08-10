@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:respira_acao/welcome_page.dart';
+import 'package:respira_acao/splash_page.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

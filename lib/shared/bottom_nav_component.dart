@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:respira_acao/features/breaths/components/breathing_category_list.dart';
-import 'package:respira_acao/features/codigo_teste.dart';
+import 'package:respira_acao/features/blog/presenter/pages/blog_page.dart';
+import 'package:respira_acao/features/breaths/presenter/components/breathing_category_list.dart';
 import 'package:respira_acao/features/settings/settings_page.dart';
 import 'package:respira_acao/features/statistics/statistics_page.dart';
 
-class MenuPage extends StatefulWidget {
-  const MenuPage({super.key});
+class BottomNavBarComponent extends StatefulWidget {
+  const BottomNavBarComponent({super.key});
 
   @override
-  State<MenuPage> createState() => _MenuPageState();
+  State<BottomNavBarComponent> createState() => _BottomNavBarComponentState();
 }
 
-class _MenuPageState extends State<MenuPage> {
+class _BottomNavBarComponentState extends State<BottomNavBarComponent> {
   int _currentBottomNavItemIndex = 0;
   late PageController _pageController;
 
@@ -67,7 +67,7 @@ class _MenuPageState extends State<MenuPage> {
         body: PageView(
           controller: _pageController,
           children: const [
-            TesteAnimacao(),
+            BlogPage(),
             BreathingCategoryList(),
             StatisticsPage(),
             SettingsPage(),
