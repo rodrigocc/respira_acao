@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:respira_acao/animated_listview.dart';
+import 'package:respira_acao/features/breaths/components/animated_listview.dart';
 
 class BreathListPage extends StatefulWidget {
   const BreathListPage({super.key});
@@ -12,7 +12,6 @@ class _BreathListPageState extends State<BreathListPage> {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      backgroundColor: Colors.yellow,
       body: AnimatedListView(),
     );
   }
