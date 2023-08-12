@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:respira_acao/config/services/wordpress_client_http.dart';
 import 'package:respira_acao/features/blog/data/models/post_model.dart';
 
+import 'article_content_page.dart';
+
 class BlogPage extends StatefulWidget {
   const BlogPage({super.key});
 
@@ -32,7 +34,17 @@ class _BlogPageState extends State<BlogPage> {
               if (snapshot.hasData) {
                 return ListView.builder(
                   itemBuilder: (_, index) => ListTile(
-                      title: Text(snapshot.data![index].title.rendered)),
+                    title: Text(snapshot.data![index].title.rendered),
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (_) => ArticleContentPage(
+                                    articleContent:
+                                        snapshot.data![index].content.rendered,
+                                  )));
+                    },
+                  ),
                   itemCount: posts!.length,
                 );
               } else {
