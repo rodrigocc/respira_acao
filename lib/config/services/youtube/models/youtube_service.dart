@@ -27,7 +27,7 @@ class YouTubeService {
       HttpHeaders.contentTypeHeader: 'application/json'
     };
 
-    Uri uri = Uri.http(Constants.BASE_URL, '/youtube/v3/channels', parameters);
+    Uri uri = Uri.https(Constants.BASE_URL, '/youtube/v3/channels', parameters);
 
     final Response response = await http.get(uri, headers: headers);
     print(response.body);

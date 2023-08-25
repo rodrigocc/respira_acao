@@ -117,7 +117,6 @@ class Snippet {
   DateTime publishedAt;
   Thumbnails thumbnails;
   Localized localized;
-  String country;
 
   Snippet({
     required this.title,
@@ -126,7 +125,6 @@ class Snippet {
     required this.publishedAt,
     required this.thumbnails,
     required this.localized,
-    required this.country,
   });
 
   factory Snippet.fromJson(Map<String, dynamic> json) => Snippet(
@@ -136,7 +134,6 @@ class Snippet {
         publishedAt: DateTime.parse(json["publishedAt"]),
         thumbnails: Thumbnails.fromJson(json["thumbnails"]),
         localized: Localized.fromJson(json["localized"]),
-        country: json["country"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -146,7 +143,6 @@ class Snippet {
         "publishedAt": publishedAt.toIso8601String(),
         "thumbnails": thumbnails.toJson(),
         "localized": localized.toJson(),
-        "country": country,
       };
 }
 

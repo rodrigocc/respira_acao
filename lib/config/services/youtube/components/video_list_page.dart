@@ -1,4 +1,6 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:respira_acao/config/services/youtube/models/channel_info_model.dart';
 import 'package:respira_acao/config/services/youtube/models/youtube_service.dart';
 
 class VideoListPage extends StatefulWidget {
@@ -10,8 +12,45 @@ class VideoListPage extends StatefulWidget {
 }
 
 class _VideoListPageState extends State<VideoListPage> {
-  _buildInfoChannelViewWidget() async {
-    await YouTubeService.getChannelInfo();
+  late ChannelInfo _channelInfo;
+
+  late Item _item;
+
+  late bool _loading;
+
+  _getChannelInfo() async {
+    _channelInfo = await YouTubeService.getChannelInfo();
+    _item = _channelInfo.items[0];
+
+    setState(() {
+      _loading = false;
+    });
+  }
+
+  _buildInfoChannelViewWidget() {
+    return Container(
+      child: Card(
+        child: Row(
+          children: [
+            CircleAvatar(
+              backgroundImage: CachedNetworkImageProvider(
+                  _item.snippet.thumbnails.medium.url),
+            ),
+            const SizedBox(
+              width: 20,
+            ),
+            Text(
+              _item.snippet.title,
+              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w400),
+            ),
+            Text(_item.statistics.videoCount),
+            const SizedBox(
+              width: 20,
+            )
+          ],
+        ),
+      ),
+    );
   }
 
   _loadVideos() async {
@@ -21,6 +60,8 @@ class _VideoListPageState extends State<VideoListPage> {
   @override
   void initState() {
     super.initState();
+    _loading = true;
+    _getChannelInfo();
   }
 
   @override
@@ -31,9 +72,13 @@ class _VideoListPageState extends State<VideoListPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ListView.builder(itemBuilder: (_, index) {
-        return const ListTile();
-      }),
-    );
+        body: _loading
+            ? const Center(child: CircularProgressIndicator())
+            : Container(
+                color: Colors.white,
+                child: Column(
+                  children: [_buildInfoChannelViewWidget()],
+                ),
+              ));
   }
 }
