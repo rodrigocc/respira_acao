@@ -11,6 +11,14 @@ class HowIfeelPage extends StatefulWidget {
 
 class _HowIfeelPageState extends State<HowIfeelPage> {
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+    // YoutubeDataSource().searchVideos("produtividade");
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(

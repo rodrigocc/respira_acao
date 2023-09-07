@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:respira_acao/features/breaths/presenter/components/animated_listview.dart';
+import 'package:respira_acao/config/services/youtube/components/video_list_page.dart';
 
 class BreathingCategoryList extends StatefulWidget {
   const BreathingCategoryList({super.key});
@@ -70,7 +70,9 @@ class _BreathingCategoryListState extends State<BreathingCategoryList>
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (_) => const AnimatedListView()));
+                          builder: (_) => const VideoListPage(
+                                playlistId: '',
+                              )));
                 },
                 title: Text(
                   _categorys[index],

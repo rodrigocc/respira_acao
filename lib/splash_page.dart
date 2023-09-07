@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:respira_acao/features/how_i_feel_page.dart';
+import 'package:respira_acao/shared/bottom_nav_component.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
@@ -24,8 +24,8 @@ class AnimatedBuilderDemoState extends State<SplashPage>
 
     _controller.forward().then((value) {
       // Start the animation and when it's finished, pop the current screen
-      Navigator.push(
-          context, MaterialPageRoute(builder: (_) => const HowIfeelPage()));
+      Navigator.push(context,
+          MaterialPageRoute(builder: (_) => const BottomNavBarComponent()));
     });
   }
 
