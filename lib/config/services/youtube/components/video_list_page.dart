@@ -2,9 +2,13 @@ import 'dart:developer';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:respira_acao/config/services/youtube/components/video_list_display.dart';
 import 'package:respira_acao/config/services/youtube/data/models/channel_info_model.dart';
 import 'package:respira_acao/config/services/youtube/data/models/video_list_model.dart';
+import 'package:respira_acao/config/services/youtube/presenter/bloc/youtube_videos_bloc.dart';
 import 'package:respira_acao/config/services/youtube_datasource.dart';
+import 'package:respira_acao/config/injection_container.dart';
 
 import '../data/models/playlist_by_id_model.dart';
 
@@ -37,13 +41,13 @@ class _VideoListPageState extends State<VideoListPage> {
     });
   }
 
-  @override
-  void initState() {
-    super.initState();
-    _loading = true;
-    _getChannelInfo();
-    // _loadVideos();
-  }
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   _loading = true;
+  //   _getChannelInfo();
+  //   // _loadVideos();
+  // }
 
   @override
   void dispose() {
@@ -53,16 +57,25 @@ class _VideoListPageState extends State<VideoListPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(),
-        body: _loading
-            ? const Center(child: CircularProgressIndicator())
-            : Container(
-                color: Colors.white,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [_buildInfoChannelViewWidget()],
-                ),
-              ));
+      body: BlocProvider(
+        create: (_) => serviceLocator<YoutubeVideosBloc>(),
+        child: const VideoListDisplay(),
+      ),
+    );
+    // return Scaffold(
+    //     appBar: AppBar(),
+    //     body: _loading
+    //         ? const Center(child: CircularProgressIndicator())
+    //         : Container(
+    //             color: Colors.white,
+    //             child: Column(
+    //               mainAxisAlignment: MainAxisAlignment.center,
+    //               children: [
+    //                 _buildInfoChannelViewWidget(),
+
+    //               ],
+    //             ),
+    //           ));
   }
 
   _buildInfoChannelViewWidget() {
