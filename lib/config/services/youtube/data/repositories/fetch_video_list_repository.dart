@@ -16,9 +16,9 @@ class FetchVideoListRepositoryImpl implements FetchVideoListRepository {
   FetchVideoListRepositoryImpl(this.youtubeDatasource);
 
   @override
-  Future<Either<Failure, List<Video>>> fetchVideoList() async {
+  Future<Either<Failure, List<Video>>> fetchVideoList(String playlistId) async {
     try {
-      final result = await youtubeDatasource.fetchVideoList();
+      final result = await youtubeDatasource.fetchVideoList(playlistId);
 
       return Right(result);
     } on Exception {

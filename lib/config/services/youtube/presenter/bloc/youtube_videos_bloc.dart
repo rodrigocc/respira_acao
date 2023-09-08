@@ -14,7 +14,7 @@ class YoutubeVideosBloc extends Bloc<YoutubeVideosEvent, YoutubeVideosState> {
   YoutubeVideosBloc(this.fetchVideoListUseCase)
       : super(YoutubeVideosInitial()) {
     on<FetchYoutubeVideosEvent>((event, emit) async {
-      final result = await fetchVideoListUseCase.call(NoParams());
+      final result = await fetchVideoListUseCase.call(event.playlistId);
 
       if (result.isRight()) {
         emit(YoutubeVideosLoaded(videoList: result.getOrElse(() => [])));

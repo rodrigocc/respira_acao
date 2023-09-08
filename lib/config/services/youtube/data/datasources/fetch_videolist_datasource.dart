@@ -6,21 +6,16 @@ import 'package:respira_acao/config/services/youtube/data/models/video_list_mode
 import 'package:respira_acao/laboratory/secret.dart';
 
 abstract class FetchYoutubeVideoListDataSource {
-  Future<List<Video>> fetchVideoList();
+  Future<List<Video>> fetchVideoList(String playlistId);
 }
 
 class FetchYoutubeVideoListDataSourceImpl
     implements FetchYoutubeVideoListDataSource {
   @override
-  Future<List<Video>> fetchVideoList() async {
-    const playListId = "PLMbsnaDm1ui4b3U_9M993AB5T005RHKmX";
-
-    final url = Uri.parse(
-        'https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=20&playlistId=$playListId&key=${Constants.API_KEY}');
-
+  Future<List<Video>> fetchVideoList(String playlistId) async {
     Map<String, dynamic> parameters = {
       "part": "snippet",
-      "playlistId": "PLMbsnaDm1ui4b3U_9M993AB5T005RHKmX",
+      "playlistId": playlistId,
       "maxResults": '10',
       "key": Constants.API_KEY,
     };

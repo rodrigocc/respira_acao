@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:respira_acao/config/services/youtube/components/video_list_page.dart';
+import 'package:respira_acao/laboratory/secret.dart';
 
 class BreathingCategoryList extends StatefulWidget {
   const BreathingCategoryList({super.key});
@@ -11,7 +12,7 @@ class BreathingCategoryList extends StatefulWidget {
 class _BreathingCategoryListState extends State<BreathingCategoryList>
     with SingleTickerProviderStateMixin {
   late AnimationController _animationController;
-  late final List<String> _categorys = [
+  final List<String> _categorys = [
     "Ansidade",
     "Estresse",
     "Insônia",
@@ -67,12 +68,16 @@ class _BreathingCategoryListState extends State<BreathingCategoryList>
               ),
               child: ListTile(
                 onTap: () {
+                  final currentPlayListId = getplaylistId(_categorys[index]);
+                  print(currentPlayListId);
                   Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (_) => const VideoListPage(
-                                playlistId: '',
-                              )));
+                    context,
+                    MaterialPageRoute(builder: (_) {
+                      return VideoListPage(
+                        playlistId: currentPlayListId!,
+                      );
+                    }),
+                  );
                 },
                 title: Text(
                   _categorys[index],
@@ -85,5 +90,31 @@ class _BreathingCategoryListState extends State<BreathingCategoryList>
         ),
       ),
     );
+  }
+
+  String? getplaylistId(String selectCategory) {
+    if (selectCategory.contains('Ansidade')) {
+      return Constants.PLAYLISTS_ID["Ansidade"];
+    }
+    if (selectCategory.contains('Estresse')) {
+      return Constants.PLAYLISTS_ID["Estresse"];
+    }
+
+    if (selectCategory.contains('Estresse')) {
+      return Constants.PLAYLISTS_ID["Estresse"];
+    }
+    if (selectCategory.contains('Insônia')) {
+      return Constants.PLAYLISTS_ID["Insônia"];
+    }
+    if (selectCategory.contains('Foco')) {
+      return Constants.PLAYLISTS_ID["Foco"];
+    }
+    if (selectCategory.contains('Produtividade')) {
+      return Constants.PLAYLISTS_ID["Produtividade"];
+    }
+    if (selectCategory.contains('Energia')) {
+      return Constants.PLAYLISTS_ID["Energia"];
+    }
+    return null;
   }
 }

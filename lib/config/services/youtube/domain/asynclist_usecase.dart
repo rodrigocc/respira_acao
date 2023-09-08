@@ -7,3 +7,9 @@ abstract class AsyncListUseCase<Type, Params> {
 }
 
 class NoParams {}
+
+class PlaylistParams {
+  final String playlistId;
+
+  PlaylistParams({required this.playlistId});
+}

@@ -4,6 +4,8 @@
 
 import 'dart:convert';
 
+import 'package:respira_acao/mocks/thumbinail_default.dart';
+
 VideoList videoListFromJson(String str) => VideoList.fromJson(json.decode(str));
 
 String videoListToJson(VideoList data) => json.encode(data.toJson());
@@ -105,8 +107,8 @@ class Snippet {
         playlistId: json["playlistId"],
         position: json["position"],
         resourceId: ResourceId.fromJson(json["resourceId"]),
-        videoOwnerChannelTitle: json["videoOwnerChannelTitle"],
-        videoOwnerChannelId: json["videoOwnerChannelId"],
+        videoOwnerChannelTitle: json["videoOwnerChannelTitle"] ?? '',
+        videoOwnerChannelId: json["videoOwnerChannelId"] ?? '',
       );
 
   Map<String, dynamic> toJson() => {
@@ -160,11 +162,12 @@ class Thumbnails {
   });
 
   factory Thumbnails.fromJson(Map<String, dynamic> json) => Thumbnails(
-        thumbnailsDefault: Default.fromJson(json["default"]),
-        medium: Default.fromJson(json["medium"]),
-        high: Default.fromJson(json["high"]),
-        standard: Default.fromJson(json["standard"]),
-        maxres: Default.fromJson(json["maxres"]),
+        thumbnailsDefault:
+            Default.fromJson(json["default"] ?? thumbnailMockDefault),
+        medium: Default.fromJson(json["medium"] ?? thumbnailMockDefault),
+        high: Default.fromJson(json["high"] ?? thumbnailMockDefault),
+        standard: Default.fromJson(json["standard"] ?? thumbnailMockDefault),
+        maxres: Default.fromJson(json["maxres"] ?? thumbnailMockDefault),
       );
 
   Map<String, dynamic> toJson() => {

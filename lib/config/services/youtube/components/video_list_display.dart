@@ -5,7 +5,8 @@ import 'package:respira_acao/config/services/youtube/data/models/video_list_mode
 import 'package:respira_acao/config/services/youtube/presenter/bloc/youtube_videos_bloc.dart';
 
 class VideoListDisplay extends StatefulWidget {
-  const VideoListDisplay({super.key});
+  final String playListId;
+  const VideoListDisplay({super.key, required this.playListId});
 
   @override
   State<VideoListDisplay> createState() => _VideoListDisplayState();
@@ -17,7 +18,8 @@ class _VideoListDisplayState extends State<VideoListDisplay> {
   @override
   void initState() {
     super.initState();
-    BlocProvider.of<YoutubeVideosBloc>(context).add(FetchYoutubeVideosEvent());
+    BlocProvider.of<YoutubeVideosBloc>(context)
+        .add(FetchYoutubeVideosEvent(playlistId: widget.playListId));
   }
 
   @override
@@ -27,26 +29,31 @@ class _VideoListDisplayState extends State<VideoListDisplay> {
         if (state is YoutubeVideosLoaded) {
           videoList = state.videoList;
 
-          return ListView.builder(
-            itemCount: videoList.length,
-            itemBuilder: (_, index) {
-              Video videoItem = videoList[index];
-              return InkWell(
-                onTap: () async {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) =>
-                              VideoPlayerPage(videoItem: videoItem)));
-                },
-                child: ListTile(
-                    leading: Image.network(
-                        videoList[index].snippet.thumbnails.medium.url),
-                    title: Text(
-                      videoList[index].snippet.title,
-                    )),
-              );
-            },
+          return Scaffold(
+            appBar: AppBar(),
+            body: ListView.builder(
+              itemCount: videoList.length,
+              itemBuilder: (_, index) {
+                Video videoItem = videoList[index];
+                return InkWell(
+                  onTap: () async {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                VideoPlayerPage(videoItem: videoItem)));
+                  },
+                  child: Container(
+                    child: ListTile(
+                        leading: Image.network(
+                            videoList[index].snippet.thumbnails.medium.url),
+                        title: Text(
+                          videoList[index].snippet.title,
+                        )),
+                  ),
+                );
+              },
+            ),
           );
         } else {
           return const Center(child: CircularProgressIndicator());

@@ -2,9 +2,8 @@ import 'dart:io';
 
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
-import 'package:respira_acao/config/services/youtube/data/models/playlist_by_id_model.dart';
+
 import 'package:respira_acao/config/services/youtube/data/models/playlistst_model.dart';
-import 'package:respira_acao/config/services/youtube/data/models/video_list_model.dart';
 import 'package:respira_acao/config/services/youtube/data/models/video_model.dart';
 import 'package:respira_acao/laboratory/secret.dart';
 

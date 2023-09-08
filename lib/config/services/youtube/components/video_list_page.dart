@@ -59,7 +59,9 @@ class _VideoListPageState extends State<VideoListPage> {
     return Scaffold(
       body: BlocProvider(
         create: (_) => serviceLocator<YoutubeVideosBloc>(),
-        child: const VideoListDisplay(),
+        child: VideoListDisplay(
+          playListId: widget.playlistId,
+        ),
       ),
     );
     // return Scaffold(

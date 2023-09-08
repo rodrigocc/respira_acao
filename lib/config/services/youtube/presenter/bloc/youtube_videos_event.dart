@@ -7,4 +7,11 @@ sealed class YoutubeVideosEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class FetchYoutubeVideosEvent extends YoutubeVideosEvent {}
+class FetchYoutubeVideosEvent extends YoutubeVideosEvent {
+  final String playlistId;
+
+  const FetchYoutubeVideosEvent({required this.playlistId});
+
+  @override
+  List<Object> get props => [playlistId];
+}
