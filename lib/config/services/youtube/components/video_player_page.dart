@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:respira_acao/config/services/youtube/data/models/video_list_model.dart';
+import '../data/models/video_list_model.dart';
+import '../../../../features/how_i_feel_page.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class VideoPlayerPage extends StatefulWidget {
@@ -52,4 +53,10 @@ class _VideoPlayerPageState extends State<VideoPlayerPage> {
       ),
     );
   }
+
+  // Function(YoutubeMetaData)? onEndedVideo() {
+  //   Navigator.push(
+  //       context, MaterialPageRoute(builder: (_) => const HowIfeelPage()));
+  //   return null;
+  // }
 }

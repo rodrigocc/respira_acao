@@ -13,7 +13,7 @@ class _BreathingCategoryListState extends State<BreathingCategoryList>
     with SingleTickerProviderStateMixin {
   late AnimationController _animationController;
   final List<String> _categorys = [
-    "Ansidade",
+    "Ansiedade",
     "Estresse",
     "Insônia",
     "Foco",
@@ -93,8 +93,8 @@ class _BreathingCategoryListState extends State<BreathingCategoryList>
   }
 
   String? getplaylistId(String selectCategory) {
-    if (selectCategory.contains('Ansidade')) {
-      return Constants.PLAYLISTS_ID["Ansidade"];
+    if (selectCategory.contains('Ansiedade')) {
+      return Constants.PLAYLISTS_ID["Ansiedade"];
     }
     if (selectCategory.contains('Estresse')) {
       return Constants.PLAYLISTS_ID["Estresse"];
