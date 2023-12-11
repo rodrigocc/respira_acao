@@ -10,8 +10,6 @@ import 'package:respira_acao/config/services/youtube/presenter/bloc/youtube_vide
 import 'package:respira_acao/config/services/youtube_datasource.dart';
 import 'package:respira_acao/config/injection_container.dart';
 
-import '../data/models/playlist_by_id_model.dart';
-
 class VideoListPage extends StatefulWidget {
   final String playlistId;
 

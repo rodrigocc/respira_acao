@@ -1,0 +1,62 @@
+default_platform(:android)
+
+platform :android do
+  desc "Build the Flutter Android app"
+  lane :build_android do
+    gradle(
+      task: "assemble",
+      build_type: "Release",
+      flavor: "your_flavor_name" # Replace with your app's flavor
+    )
+  end
+
+  desc "Submit a new Android release to Google Play"
+  lane :deploy_android do
+    upload_to_play_store(
+      track: "internal", # Change to your desired track
+      package_name: "com.your.app.package", # Replace with your app's package name
+      json_key_data: ENV["JSON_KEY_DATA"],
+       # Set this as an environment variable
+    )
+  end
+
+  desc "Deploy a new version to the Google Play Prod"
+  lane :deploy_prod do
+    upload_to_play_store(
+    track:"production", 
+    aab:"../build/app/outputs/bundle/release/app-release.aab", 
+    skip_upload_metadata:true,
+    skip_upload_images:true,
+    skip_upload_screenshots:true,
+  )
+  end
+
+  lane :sh_on_root do |options|
+    command = options[:command]
+    sh("cd #{root_path} && #{command}")
+  end
+
+
+  lane :build_apk_prod do
+    desc "Building flutter APK"
+    sh_on_root(command: "flutter build appbundle")
+    
+  end
+
+platform :android do
+  desc "Deploy Flutter App Bundle to Play Store"
+  lane :deploy_play_store do
+    # Ensure you have the necessary credentials and metadata set up
+    # More details on that below.
+    upload_to_play_store(
+      track: 'production', # You can change this to 'alpha', 'beta', or 'production'
+      json_key: '/Users/rodrigopc/Documents/respiracaokeys/respiracao-app-fa6834f941d1.json', # Path to your Play Console API key JSON file
+      package_name: 'com.respira.respira_acao', # Your app's package name
+      skip_upload_metadata: true, # Set to true if you want to skip uploading metadata
+      skip_upload_images: true, # Set to true if you want to skip uploading images
+      aab: '/Users/rodrigopc/Documents/flutterProjects/respira_acao/build/app/outputs/bundle/release/app-release.aab' # Path to your App Bundle
+    )
+  end
+end
+
+end

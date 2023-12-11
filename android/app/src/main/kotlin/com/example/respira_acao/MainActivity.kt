@@ -1,4 +1,4 @@
-package com.example.respira_acao
+package com.respira.respira_acao
 
 import io.flutter.embedding.android.FlutterActivity
 

@@ -21,7 +21,6 @@ class AnimatedBuilderDemoState extends State<SplashPage>
       duration: const Duration(seconds: 10),
       vsync: this,
     );
-
     _controller.forward().then((value) {
       // Start the animation and when it's finished, pop the current screen
       Navigator.push(context,

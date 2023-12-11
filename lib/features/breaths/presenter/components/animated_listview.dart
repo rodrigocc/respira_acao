@@ -16,18 +16,6 @@ class _AnimatedListViewState extends State<AnimatedListView>
   final Duration _duration = const Duration(seconds: 2);
   late YoutubeDatasource _youTubeDataSource;
 
-//   ChannelInfo _channelInfo;
-// _getChannelInfo() async {
-//     _channelInfo = await Services.getChannelInfo();
-//     _item = _channelInfo.items[0];
-//     _playListId = _item.contentDetails.relatedPlaylists.uploads;
-//     print('_playListId $_playListId');
-//     await _loadVideos();
-//     setState(() {
-//       _loading = false;
-//     });
-//  }
-
   @override
   void initState() {
     super.initState();
